@@ -1,6 +1,6 @@
 # recruitInfo
 
-This is a Scrapy project to scrape recruit information from https://www.theguardian.com/ (英国卫报).
+This is a Scrapy project to scrape recruit information from https://jobs.51job.com/ .
 
 This project uses **Mongodb** as database.
 
