@@ -68,7 +68,8 @@ COOKIES_ENABLED = False
 ITEM_PIPELINES = {
     'employment.pipelines.EmploymentPipeline': 300,
     # 'employment.pipelines.JsonWriterPipeline': 800,
-    'employment.pipelines.MongoPipeline': 800,
+    # 'employment.pipelines.MongoPipeline': 800,
+    'employment.pipelines.MysqlPipeline': 800,
 }
 MONGO_HOST = "127.0.0.1"  # 主机IP
 MONGO_PORT = 27017  # 端口号

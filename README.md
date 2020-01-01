@@ -28,11 +28,11 @@ This project contains two spiders and you can list them using the list command:
 
 This spider saves data in mongoDB, but you can choose another way of saving data in a json file.
 
-You can learn more about using **Scrapy** by going through [my blog]('https://stardust567.github.io/post/b2a.html').
+You can learn more about using **Scrapy** by going through [my blog](https://stardust567.github.io/post/b2a.html).
 
 ## Running the spiders
 
 You can run a spider using the scrapy crawl command, such as:
 
-`$ scrapy crawl news`
+`$ scrapy crawl employ`
 

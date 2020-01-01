@@ -4,6 +4,7 @@ import json
 import codecs
 import logging
 import pymongo
+import pymysql
 from scrapy.conf import settings
 
 
@@ -76,3 +77,23 @@ class MongoPipeline(object):
         postItem = dict(item)  # 把item转化成字典形式
         self.coll.insert(postItem)  # 向数据库插入一条记录
         return item  # 会在控制台输出原item数据，可以选择不写
+
+class MysqlPipeline(object):
+    def __init__(self):
+        self.client = pymysql.connect(
+            host='127.0.0.1',
+            port=3306,
+            user='root',  #使用自己的用户名 
+            passwd='root',  # 使用自己的密码
+            db='infoweb',  # 数据库名
+            charset='utf8mb4'   
+        )
+        self.cur = self.client.cursor()
+    def process_item(self,item,spider):
+        sql = 'insert into recruitInfo(title,link,company,city,salary, createTime) VALUES (%s,%s,%s,%s,%s,%s)'
+        lis = (item['title'],item['link'],item['company'],item['city'],item['salary'],item['createTime'])
+        self.cur.execute(sql,lis)
+        self.client.commit()
+        # self.cur.close()
+        # self.client.close()
+        return item
