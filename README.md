@@ -1,10 +1,10 @@
 # recruitInfo
 
-This is a Scrapy project to scrape recruit information from https://jobs.51job.com/ .
+This is a **Scrapy** project to scrape recruit information from https://jobs.51job.com/ .
 
-This project uses **Mongodb** as database.
+This project uses **MySQL/Mongodb** as database.
 
-You can enter `pip install -r requirements.txt` in cmd/shell to make sure you have installed all the requirements.
+You can enter `pip install -r requirements.txt`  to make sure you have installed all the requirements.
 
 ## Extracted data
 
@@ -26,11 +26,17 @@ This project contains two spiders and you can list them using the list command:
 
 > employ
 
-This spider saves data in mongoDB, but you can choose another way of saving data in a json file.
+This spider saves data in MySQL, you can alter the connection setting in `pipelins.py`.
+
+You also can choose MongoDB to store the data,  the connection setting is in `settings.py`.
+
+Obviously, you can choose another way of saving data in a json file instead of database.
 
 You can learn more about using **Scrapy** by going through [my blog](https://stardust567.github.io/post/b2a.html).
 
 ## Running the spiders
+
+**Make sure that you have altered `ITEM_PIPELINES` in `settings.py`.**
 
 You can run a spider using the scrapy crawl command, such as:
 

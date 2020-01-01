@@ -6,7 +6,8 @@ import logging
 import pymongo
 import pymysql
 from scrapy.conf import settings
-
+import datetime 
+# 获取当前年份，网站只有月日，mysql DATE类型需要年份
 
 class EmploymentPipeline(object):
 
@@ -39,6 +40,7 @@ class EmploymentPipeline(object):
         if createTime:
             if createTime is "发布时间":
                 raise DropItem('createTime information was missing')
+            item['createTime'] = str(datetime.datetime.now().year) + "-" + createTime
         else:
             raise DropItem('createTime information was missing')
         link = item['link']
@@ -90,7 +92,7 @@ class MysqlPipeline(object):
         )
         self.cur = self.client.cursor()
     def process_item(self,item,spider):
-        sql = 'insert into recruitInfo(title,link,company,city,salary, createTime) VALUES (%s,%s,%s,%s,%s,%s)'
+        sql = 'insert into recruit_info(title,link,company,city,salary,time) VALUES (%s,%s,%s,%s,%s,STR_TO_DATE(%s, "%%Y-%%m-%%d"))'
         lis = (item['title'],item['link'],item['company'],item['city'],item['salary'],item['createTime'])
         self.cur.execute(sql,lis)
         self.client.commit()
